@@ -3,142 +3,407 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CHAYAN AI</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+    box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  background:#eef1f5;
-  padding:15px;
+    margin:0;
+    min-height:100vh;
+    font-family:Arial, sans-serif;
+    color:#ffffff;
+
+    background:
+    radial-gradient(circle at top left,#243b8f 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#7b1fa2 0%,transparent 35%),
+    linear-gradient(135deg,#071126,#0d1b3d,#160d2e);
+
+    padding:15px;
 }
 
 .app{
-  max-width:520px;
-  margin:auto;
+    max-width:520px;
+    margin:auto;
 }
+
+/* HEADER */
 
 .header{
-  text-align:center;
-  padding:20px 10px;
+    text-align:center;
+    padding:30px 15px 20px;
 }
 
-.header h1{
-  margin:0;
-  font-size:32px;
+.profile-box{
+    width:130px;
+    height:130px;
+    margin:auto;
+    padding:5px;
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00e5ff,
+        #6c63ff,
+        #ff4ecd
+    );
+
+    box-shadow:
+    0 0 20px #00e5ff,
+    0 0 40px rgba(108,99,255,.5);
 }
+
+.profile-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid #10172d;
+}
+
+.title{
+    margin:18px 0 5px;
+    font-size:36px;
+    font-weight:800;
+    letter-spacing:2px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #00e5ff,
+        #ffffff,
+        #b967ff
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:
+    0 0 20px rgba(0,229,255,.5);
+}
+
+.subtitle{
+    margin:0;
+    color:#c9d4ff;
+    font-size:15px;
+    letter-spacing:1px;
+}
+
+/* CARD */
 
 .card{
-  background:white;
-  padding:18px;
-  margin-bottom:15px;
-  border-radius:18px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
+    margin:15px 0;
+    padding:20px;
+    border-radius:22px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
 }
 
-input,textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:16px;
-  margin-bottom:10px;
+.card h2{
+    margin-top:0;
+    font-size:20px;
+}
+
+/* INPUT */
+
+input,
+textarea{
+    width:100%;
+    border:none;
+    outline:none;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.12);
+
+    color:white;
+
+    font-size:16px;
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    margin-bottom:10px;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#bfc8e8;
 }
 
 textarea{
-  height:80px;
+    height:90px;
+    resize:none;
 }
 
-button{
-  border:0;
-  border-radius:10px;
-  padding:12px 16px;
+/* BUTTON */
+
+.main-btn{
+    width:100%;
+    border:none;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        90deg,
+        #00b4db,
+        #6c63ff,
+        #a855f7
+    );
+
+    box-shadow:
+    0 8px 20px rgba(108,99,255,.35);
+
+    transition:.3s;
 }
 
-.main{
-  width:100%;
-  background:#222;
-  color:white;
+.main-btn:active{
+    transform:scale(.97);
 }
 
-.voice{
-  display:block;
-  width:90px;
-  height:90px;
-  margin:20px auto;
-  border-radius:50%;
-  background:#222;
-  color:white;
-  font-size:34px;
+/* VOICE */
+
+.voice-btn{
+    display:block;
+
+    width:100px;
+    height:100px;
+
+    margin:20px auto;
+
+    border:none;
+    border-radius:50%;
+
+    color:white;
+    font-size:38px;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        #00d4ff,
+        #6c63ff,
+        #ff4ecd
+    );
+
+    box-shadow:
+    0 0 20px #00d4ff,
+    0 0 45px rgba(108,99,255,.7);
+
+    transition:.3s;
 }
 
-.voice.active{
-  transform:scale(1.08);
+.voice-btn.active{
+    animation:pulse 1s infinite;
 }
 
-.voiceText{
-  background:#f5f5f5;
-  padding:13px;
-  border-radius:10px;
-  text-align:center;
-  min-height:45px;
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+        box-shadow:
+        0 0 30px #00e5ff,
+        0 0 60px #ff4ecd;
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
 }
 
-.chat{
-  height:250px;
-  overflow-y:auto;
-  background:#f5f5f5;
-  padding:10px;
-  border-radius:12px;
+.voice-text{
+
+    text-align:center;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    color:#dce6ff;
+
+    background:
+    rgba(0,0,0,.18);
+
+}
+
+/* CHAT */
+
+.chat-box{
+
+    height:270px;
+
+    overflow-y:auto;
+
+    padding:10px;
+
+    border-radius:16px;
+
+    background:
+    rgba(0,0,0,.18);
+
 }
 
 .message{
-  padding:10px;
-  margin:7px 0;
-  border-radius:10px;
-}
 
-.user{
-  background:#ddd;
-  text-align:right;
+    max-width:85%;
+
+    padding:12px;
+
+    margin:9px 0;
+
+    border-radius:16px;
+
+    line-height:1.5;
+
 }
 
 .ai{
-  background:#e9e9e9;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,180,219,.25),
+        rgba(108,99,255,.25)
+    );
+
+    border:
+    1px solid rgba(0,229,255,.2);
+
 }
 
+.user{
+
+    margin-left:auto;
+
+    text-align:right;
+
+    background:
+    linear-gradient(
+        135deg,
+        #6c63ff,
+        #9333ea
+    );
+
+}
+
+/* NOTES AND TASKS */
+
 .item{
-  background:#f6f6f6;
-  padding:12px;
-  margin-top:8px;
-  border-radius:10px;
+
+    padding:13px;
+
+    margin-top:10px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border-left:
+    3px solid #00e5ff;
+
+    color:#e9edff;
+
 }
 
 .delete{
-  float:right;
-  background:none;
-  padding:3px;
+
+    float:right;
+
+    border:none;
+
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
 }
 
 .done{
-  text-decoration:line-through;
-  opacity:.5;
+
+    text-decoration:line-through;
+
+    opacity:.5;
+
 }
+
+.footer{
+
+    text-align:center;
+
+    color:#93a4d9;
+
+    padding:20px;
+
+    font-size:13px;
+
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
+
+<!-- HEADER -->
+
 <div class="header">
-<h1>🤖 CHAYAN AI</h1>
-<p>Bangla Smart Voice Assistant</p>
+
+<div class="profile-box">
+
+<img
+src="profile.jpg"
+alt="Chayan">
+
 </div>
+
+<h1 class="title">
+CHAYAN AI
+</h1>
+
+<p class="subtitle">
+YOUR PERSONAL SMART VOICE ASSISTANT
+</p>
+
+</div>
+
 
 
 <!-- VOICE -->
@@ -149,32 +414,39 @@ button{
 
 <button
 id="voiceBtn"
-class="voice"
+class="voice-btn"
 onclick="startVoice()">
+
 🎤
+
 </button>
 
 <div
 id="voiceText"
-class="voiceText">
-মাইক্রোফোন চাপুন...
+class="voice-text">
+
+মাইক্রোফোন চাপুন এবং বাংলায় কথা বলুন...
+
 </div>
 
 </div>
+
 
 
 <!-- CHAT -->
 
 <div class="card">
 
-<h2>💬 CHAYAN AI Chat</h2>
+<h2>💬 AI Chat</h2>
 
 <div
 id="chatBox"
-class="chat">
+class="chat-box">
 
 <div class="message ai">
-🤖 হ্যালো! আমি CHAYAN AI। আমাকে কিছু বলুন।
+
+🤖 হ্যালো Chayan! আমি আপনার CHAYAN AI। আমাকে কিছু বলুন।
+
 </div>
 
 </div>
@@ -183,31 +455,36 @@ class="chat">
 
 <input
 id="chatInput"
-placeholder="এখানে লিখুন...">
+placeholder="এখানে আপনার প্রশ্ন লিখুন...">
 
 <button
-class="main"
+class="main-btn"
 onclick="sendMessage()">
-🚀 Send
+
+🚀 SEND MESSAGE
+
 </button>
 
 </div>
+
 
 
 <!-- NOTES -->
 
 <div class="card">
 
-<h2>📝 Notes</h2>
+<h2>📝 Smart Notes</h2>
 
 <textarea
 id="noteInput"
-placeholder="Note লিখুন..."></textarea>
+placeholder="আপনার গুরুত্বপূর্ণ Note লিখুন..."></textarea>
 
 <button
-class="main"
+class="main-btn"
 onclick="saveNote()">
-💾 Save Note
+
+💾 SAVE NOTE
+
 </button>
 
 <div id="notesList"></div>
@@ -215,7 +492,8 @@ onclick="saveNote()">
 </div>
 
 
-<!-- TASK -->
+
+<!-- TASKS -->
 
 <div class="card">
 
@@ -223,26 +501,34 @@ onclick="saveNote()">
 
 <input
 id="taskInput"
-placeholder="Task লিখুন...">
+placeholder="নতুন Task লিখুন...">
 
 <button
-class="main"
+class="main-btn"
 onclick="addTask()">
-➕ Add Task
+
+➕ ADD TASK
+
 </button>
 
 <div id="taskList"></div>
 
 </div>
 
+
+<div class="footer">
+
+© 2026 CHAYAN AI • Created by Chayan
+
 </div>
+
+</div>
+
 
 
 <script>
 
-/* ===============================
-VOICE
-================================ */
+/* VOICE */
 
 function startVoice(){
 
@@ -252,9 +538,7 @@ window.webkitSpeechRecognition;
 
 if(!SpeechRecognition){
 
-alert(
-"Chrome browser ব্যবহার করুন।"
-);
+alert("Voice Recognition এর জন্য Chrome ব্যবহার করুন।");
 
 return;
 }
@@ -268,28 +552,25 @@ recognition.continuous=false;
 
 recognition.interimResults=false;
 
-const btn=
+const button =
 document.getElementById("voiceBtn");
 
-const output=
+const output =
 document.getElementById("voiceText");
 
-btn.classList.add("active");
+button.classList.add("active");
 
-output.innerText=
-"🎧 শুনছি...";
+output.innerText="🎧 শুনছি...";
 
 try{
 
 recognition.start();
 
-}catch(e){
+}catch(error){
 
-output.innerText=
-"Voice already running...";
+output.innerText="Voice চালু আছে...";
 
 }
-
 
 recognition.onresult=function(event){
 
@@ -307,62 +588,48 @@ sendMessage();
 
 };
 
-
 recognition.onerror=function(event){
 
 output.innerText=
-"❌ Voice: "+event.error;
+"❌ Voice Error: "+
+event.error;
 
-btn.classList.remove("active");
+button.classList.remove("active");
 
 };
 
-
 recognition.onend=function(){
 
-btn.classList.remove("active");
+button.classList.remove("active");
 
 };
 
 }
 
 
-/* ===============================
-CHAT
-================================ */
+
+/* CHAT */
 
 function sendMessage(){
 
 const input=
-document.getElementById(
-"chatInput"
-);
+document.getElementById("chatInput");
 
 const text=
 input.value.trim();
 
-if(!text){
+if(!text) return;
 
-return;
-}
-
-addMessage(
-text,
-"user"
-);
+addMessage(text,"user");
 
 input.value="";
-
 
 const answer=
 smartAI(text);
 
 setTimeout(function(){
 
-addMessage(
-answer,
-"ai"
-);
+addMessage(answer,"ai");
 
 speak(answer);
 
@@ -371,24 +638,14 @@ speak(answer);
 }
 
 
-/* ===============================
-MESSAGE
-================================ */
 
-function addMessage(
-text,
-type
-){
+function addMessage(text,type){
 
 const box=
-document.getElementById(
-"chatBox"
-);
+document.getElementById("chatBox");
 
 const div=
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 div.className=
 "message "+type;
@@ -404,238 +661,76 @@ box.scrollHeight;
 }
 
 
-/* ===============================
-SMART AI
-================================ */
+
+/* SMART BRAIN */
 
 function smartAI(text){
 
-const q=
-text.toLowerCase().trim();
-
-
-/* পরিচয় */
+const q=text.toLowerCase().trim();
 
 if(
 q.includes("তুমি কে") ||
-q.includes("তোমার নাম") ||
-q.includes("who are you") ||
-q.includes("tumi ke")
+q.includes("তোমার নাম")
 ){
 
-return "আমি CHAYAN AI। আমি আপনার বাংলা Smart Voice Assistant।";
+return "আমি CHAYAN AI। আমি Chayan-এর Personal Smart Voice Assistant।";
 
 }
-
-
-/* হ্যালো */
 
 if(
 q.includes("হ্যালো") ||
 q.includes("হাই") ||
-q.includes("hello") ||
-q.includes("hi")
+q.includes("hello")
 ){
 
-return "হ্যালো! 😊 আমি CHAYAN AI। কীভাবে সাহায্য করতে পারি?";
+return "হ্যালো Chayan! 😊 আমি কীভাবে সাহায্য করতে পারি?";
 
 }
-
-
-/* Python */
 
 if(
 q.includes("python") ||
 q.includes("পাইথন")
 ){
 
-return "Python একটি জনপ্রিয় programming language। এটি AI, Data Science, Web Development এবং Automation-এ ব্যবহার করা হয়।";
+return "Python একটি জনপ্রিয় Programming Language। এটি AI, Data Science, Web Development এবং Automation-এ ব্যবহার করা হয়।";
 
 }
-
-
-/* Computer Science */
 
 if(
 q.includes("computer science") ||
-q.includes("কম্পিউটার সায়েন্স") ||
-q.includes("কম্পিউটার সাইন্স")
+q.includes("কম্পিউটার সায়েন্স")
 ){
 
-return "Computer Science-এর মধ্যে Programming, Algorithm, Database, Software, AI, Networking এবং অনেক computer technology শেখানো হয়।";
+return "Computer Science হলো Programming, Software, AI, Data Science, Networking এবং Technology নিয়ে কাজ করার একটি বড় ক্ষেত্র।";
 
 }
-
-
-/* Note দেখাও */
 
 if(
-q.includes("নোট দেখাও") ||
-q.includes("notes দেখাও") ||
-q.includes("note দেখাও")
-){
-
-const notes=
-JSON.parse(
-localStorage.getItem("notes")
-)||[];
-
-if(notes.length===0){
-
-return "আপনার কোনো Note নেই।";
-
-}
-
-return "আপনার "+notes.length+
-"টি Note আছে।";
-
-}
-
-
-/* Task দেখাও */
-
-if(
-q.includes("task দেখাও") ||
-q.includes("টাস্ক দেখাও") ||
-q.includes("কাজ দেখাও")
-){
-
-const tasks=
-JSON.parse(
-localStorage.getItem("tasks")
-)||[];
-
-if(tasks.length===0){
-
-return "আপনার কোনো Task নেই।";
-
-}
-
-return "আপনার "+tasks.length+
-"টি Task আছে।";
-
-}
-
-
-/* Note command */
-
-if(
-q.includes("note") ||
-q.includes("নোট") ||
-q.includes("মনে রাখ")
-){
-
-let note=text
-.replace(/note/gi,"")
-.replace(/নোট/g,"")
-.replace(/করো/g,"")
-.replace(/মনে রাখ/g,"")
-.trim();
-
-if(note){
-
-let notes=
-JSON.parse(
-localStorage.getItem("notes")
-)||[];
-
-notes.push(note);
-
-localStorage.setItem(
-"notes",
-JSON.stringify(notes)
-);
-
-showNotes();
-
-return "ঠিক আছে। আমি Note save করেছি।";
-
-}
-
-}
-
-
-/* Task command */
-
-if(
-q.includes("task") ||
-q.includes("টাস্ক") ||
-q.includes("কাজ যোগ")
-){
-
-let task=text
-.replace(/task/gi,"")
-.replace(/টাস্ক/g,"")
-.replace(/কাজ যোগ/g,"")
-.replace(/কাজ/g,"")
-.replace(/করো/g,"")
-.trim();
-
-if(task){
-
-let tasks=
-JSON.parse(
-localStorage.getItem("tasks")
-)||[];
-
-tasks.push({
-
-text:task,
-
-done:false
-
-});
-
-localStorage.setItem(
-"tasks",
-JSON.stringify(tasks)
-);
-
-showTasks();
-
-return "ঠিক আছে। আমি Task যোগ করেছি।";
-
-}
-
-}
-
-
-/* সাহায্য */
-
-if(
-q.includes("কি করতে পারো") ||
 q.includes("কী করতে পারো") ||
-q.includes("help") ||
-q.includes("সাহায্য")
+q.includes("কি করতে পারো") ||
+q.includes("help")
 ){
 
-return "আমি Voice command নিতে পারি, Note save করতে পারি, Task তৈরি করতে পারি এবং কিছু সাধারণ প্রশ্নের উত্তর দিতে পারি।";
+return "আমি Voice শুনতে পারি, কিছু Smart Command বুঝতে পারি, Note save করতে পারি এবং Task তৈরি করতে পারি।";
 
 }
-
-
-/* ধন্যবাদ */
 
 if(
 q.includes("ধন্যবাদ") ||
 q.includes("thanks")
 ){
 
-return "আপনাকেও ধন্যবাদ। 😊";
+return "আপনাকেও ধন্যবাদ Chayan! 😊";
+
+}
+
+return "আমি আপনার কথাটি বুঝেছি, কিন্তু এই প্রশ্নের উত্তর এখনো আমার Demo Brain-এ নেই। পরে আমাকে আরও Smart করা হবে।";
 
 }
 
 
-/* default */
 
-return "আমি কথাটি বুঝেছি, কিন্তু এই command এখনো আমার মধ্যে যোগ করা হয়নি।";
-
-}
-
-
-/* ===============================
-VOICE REPLY
-================================ */
+/* VOICE REPLY */
 
 function speak(text){
 
@@ -643,39 +738,37 @@ if("speechSynthesis" in window){
 
 speechSynthesis.cancel();
 
-const voice=
+const speech=
 new SpeechSynthesisUtterance(text);
 
-voice.lang="bn-BD";
+speech.lang="bn-BD";
 
-voice.rate=1;
+speech.rate=1;
 
-speechSynthesis.speak(voice);
-
-}
+speechSynthesis.speak(speech);
 
 }
 
+}
 
-/* ===============================
-NOTES
-================================ */
+
+
+/* NOTES */
 
 function saveNote(){
 
 const input=
-document.getElementById(
-"noteInput"
-);
+document.getElementById("noteInput");
 
 const text=
 input.value.trim();
 
 if(!text){
 
-alert("Note লিখুন!");
+alert("আগে Note লিখুন!");
 
 return;
+
 }
 
 let notes=
@@ -697,6 +790,7 @@ showNotes();
 }
 
 
+
 function showNotes(){
 
 const notes=
@@ -705,25 +799,24 @@ localStorage.getItem("notes")
 )||[];
 
 const list=
-document.getElementById(
-"notesList"
-);
+document.getElementById("notesList");
 
 list.innerHTML="";
 
-notes.forEach(
-function(note,index){
+notes.forEach(function(note,index){
 
 list.innerHTML+=`
 
 <div class="item">
 
-${escapeHTML(note)}
+${note}
 
 <button
 class="delete"
 onclick="deleteNote(${index})">
+
 🗑️
+
 </button>
 
 <div style="clear:both"></div>
@@ -735,6 +828,7 @@ onclick="deleteNote(${index})">
 });
 
 }
+
 
 
 function deleteNote(index){
@@ -756,25 +850,23 @@ showNotes();
 }
 
 
-/* ===============================
-TASKS
-================================ */
+
+/* TASKS */
 
 function addTask(){
 
 const input=
-document.getElementById(
-"taskInput"
-);
+document.getElementById("taskInput");
 
 const text=
 input.value.trim();
 
 if(!text){
 
-alert("Task লিখুন!");
+alert("আগে Task লিখুন!");
 
 return;
+
 }
 
 let tasks=
@@ -783,11 +875,8 @@ localStorage.getItem("tasks")
 )||[];
 
 tasks.push({
-
 text:text,
-
 done:false
-
 });
 
 localStorage.setItem(
@@ -802,6 +891,7 @@ showTasks();
 }
 
 
+
 function showTasks(){
 
 const tasks=
@@ -810,14 +900,11 @@ localStorage.getItem("tasks")
 )||[];
 
 const list=
-document.getElementById(
-"taskList"
-);
+document.getElementById("taskList");
 
 list.innerHTML="";
 
-tasks.forEach(
-function(task,index){
+tasks.forEach(function(task,index){
 
 list.innerHTML+=`
 
@@ -828,14 +915,16 @@ onclick="completeTask(${index})"
 class="${task.done?"done":""}">
 
 ${task.done?"✅":"⬜"}
-${escapeHTML(task.text)}
+${task.text}
 
 </span>
 
 <button
 class="delete"
 onclick="deleteTask(${index})">
+
 🗑️
+
 </button>
 
 <div style="clear:both"></div>
@@ -847,6 +936,7 @@ onclick="deleteTask(${index})">
 });
 
 }
+
 
 
 function completeTask(index){
@@ -869,6 +959,7 @@ showTasks();
 }
 
 
+
 function deleteTask(index){
 
 let tasks=
@@ -888,27 +979,11 @@ showTasks();
 }
 
 
-/* ===============================
-SECURITY
-================================ */
 
-function escapeHTML(text){
-
-const div=
-document.createElement("div");
-
-div.textContent=text;
-
-return div.innerHTML;
-
-}
-
-
-/* ===============================
-START
-================================ */
+/* START */
 
 showNotes();
+
 showTasks();
 
 </script>
