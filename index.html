@@ -1,106 +1,113 @@
 <!DOCTYPE html>
-<Smaa lang="bn">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bangla Smart Assistant</title>
+<title>CHAYAN AI</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
-body {
-  margin: 0;
-  background: #f2f4f7;
-  padding: 15px;
+body{
+  margin:0;
+  background:#f2f4f7;
+  padding:15px;
 }
 
-.app {
-  max-width: 500px;
-  margin: auto;
+.app{
+  max-width:500px;
+  margin:auto;
 }
 
-.header {
-  text-align: center;
-  padding: 15px;
+.header{
+  text-align:center;
+  padding:15px;
 }
 
-.card {
-  background: white;
-  padding: 18px;
-  border-radius: 18px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+.card{
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  margin-bottom:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-textarea,
-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-  margin-bottom: 10px;
+.voice-btn{
+  display:block;
+  width:85px;
+  height:85px;
+  margin:15px auto;
+  border-radius:50%;
+  border:0;
+  font-size:32px;
+  background:#222;
+  color:white;
 }
 
-textarea {
-  height: 90px;
-  resize: none;
+.voice-btn.listening{
+  transform:scale(1.1);
 }
 
-button {
-  border: 0;
-  padding: 11px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 3px;
+.voice-text{
+  background:#f7f7f7;
+  padding:12px;
+  border-radius:10px;
+  min-height:45px;
+  text-align:center;
 }
 
-.main-btn {
-  width: 100%;
-  background: #222;
-  color: white;
+input,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  margin-bottom:10px;
 }
 
-.voice-btn {
-  display: block;
-  width: 80px;
-  height: 80px;
-  margin: 15px auto;
-  border-radius: 50%;
-  font-size: 32px;
-  background: #222;
-  color: white;
+textarea{
+  height:80px;
 }
 
-.voice-btn.listening {
-  transform: scale(1.08);
+button{
+  border:0;
+  padding:11px 16px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-.voice-text {
-  background: #f7f7f7;
-  padding: 12px;
-  border-radius: 10px;
-  min-height: 45px;
+.main-btn{
+  width:100%;
+  background:#222;
+  color:white;
 }
 
-.item {
-  background: #f7f7f7;
-  padding: 12px;
-  border-radius: 10px;
-  margin-top: 8px;
+.item{
+  background:#f7f7f7;
+  padding:12px;
+  border-radius:10px;
+  margin-top:8px;
 }
 
-.delete {
-  float: right;
+.delete{
+  float:right;
 }
 
-.completed {
-  text-decoration: line-through;
-  opacity: .5;
+.completed{
+  text-decoration:line-through;
+  opacity:.5;
+}
+
+.response{
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:#eef1f5;
+  text-align:center;
 }
 </style>
 </head>
@@ -110,19 +117,16 @@ button {
 <div class="app">
 
 <div class="header">
-<>🤖 <h1>🤖 CHAYAN AI</h1>
-<Assista>Bangla Smart VoicAsissistan>
+<h1>🤖 CHAYAN AI</h1>
+<p>Bangla Smart Voice Assistant</p>
 </div>
 
 
 <!-- VOICE -->
 
-<div class="card">  
- <h2>🎤 CHAYAN AI Voice Assistant</h2>
+<div class="card">
 
-<p style="text-align:center;">
-বাংলায় কথা বলুন
-</p>
+<h2>🎤 Voice Assistant</h2>
 
 <button
 id="voiceBtn"
@@ -132,7 +136,11 @@ onclick="startVoice()">
 </button>
 
 <div id="voiceText" class="voice-text">
-আপনার কথা এখানে দেখা যাবে...
+মাইক্রোফোন চাপুন এবং কথা বলুন
+</div>
+
+<div id="response" class="response">
+আমি আপনার command-এর অপেক্ষায় আছি।
 </div>
 
 </div>
@@ -146,7 +154,7 @@ onclick="startVoice()">
 
 <textarea
 id="noteInput"
-placeholder="আপনার Note লিখুন..."></textarea>
+placeholder="Note লিখুন..."></textarea>
 
 <button
 class="main-btn"
@@ -167,7 +175,7 @@ onclick="saveNote()">
 
 <input
 id="taskInput"
-placeholder="আজকের কাজ লিখুন...">
+placeholder="Task লিখুন...">
 
 <button
 class="main-btn"
@@ -179,31 +187,6 @@ onclick="addTask()">
 
 </div>
 
-
-<!-- REMINDER -->
-
-<div class="card">
-
-<h2>⏰ Reminder</h2>
-
-<input
-id="reminderText"
-placeholder="Reminder লিখুন...">
-
-<input
-id="reminderTime"
-type="datetime-local">
-
-<button
-class="main-btn"
-onclick="setReminder()">
-⏰ Set Reminder
-</button>
-
-<div id="reminderList"></div>
-
-</div>
-
 </div>
 
 
@@ -211,17 +194,15 @@ onclick="setReminder()">
 
 /* ================= VOICE ================= */
 
-function startVoice() {
+function startVoice(){
 
 const SpeechRecognition =
 window.SpeechRecognition ||
 window.webkitSpeechRecognition;
 
-if (!SpeechRecognition) {
+if(!SpeechRecognition){
 
-alert(
-"আপনার Browser Voice Recognition support করছে না। Chrome ব্যবহার করুন।"
-);
+alert("Chrome browser ব্যবহার করুন।");
 
 return;
 }
@@ -229,69 +210,247 @@ return;
 const recognition =
 new SpeechRecognition();
 
-recognition.lang = "bn-BD";
+recognition.lang="bn-BD";
 
-recognition.continuous = false;
+recognition.continuous=false;
 
-recognition.interimResults = false;
+recognition.interimResults=false;
 
-const button =
+const btn =
 document.getElementById("voiceBtn");
 
-const output =
+const voiceText =
 document.getElementById("voiceText");
 
-button.classList.add("listening");
+btn.classList.add("listening");
 
-output.innerText =
-"🎧 শুনছি... কথা বলুন";
+voiceText.innerText="🎧 শুনছি...";
 
 recognition.start();
 
-recognition.onresult = function(event) {
+
+recognition.onresult=function(event){
 
 const text =
 event.results[0][0].transcript;
 
-output.innerText = text;
+voiceText.innerText=text;
+
+processCommand(text);
 
 };
 
-recognition.onerror = function(event) {
 
-output.innerText =
-"❌ Voice error: " + event.error;
+recognition.onerror=function(event){
+
+voiceText.innerText=
+"❌ "+event.error;
+
+btn.classList.remove("listening");
+
+};
+
+
+recognition.onend=function(){
+
+btn.classList.remove("listening");
 
 };
 
-recognition.onend = function() {
+}
 
-button.classList.remove("listening");
 
-};
+/* ================= SMART BRAIN ================= */
+
+function processCommand(text){
+
+let command=text.toLowerCase();
+
+
+// NOTE
+
+if(
+command.includes("note করো") ||
+command.includes("নোট করো") ||
+command.includes("note")
+){
+
+let note=text
+.replace(/note/gi,"")
+.replace(/নোট/gi,"")
+.replace(/করো/gi,"")
+.trim();
+
+if(note){
+
+let notes=
+JSON.parse(
+localStorage.getItem("notes")
+)||[];
+
+notes.push(note);
+
+localStorage.setItem(
+"notes",
+JSON.stringify(notes)
+);
+
+showNotes();
+
+reply("ঠিক আছে, Note save করেছি।");
+
+return;
+}
+
+}
+
+
+// TASK
+
+if(
+command.includes("task") ||
+command.includes("টাস্ক") ||
+command.includes("কাজ যোগ")
+){
+
+let task=text
+.replace(/task/gi,"")
+.replace(/টাস্ক/gi,"")
+.replace(/যোগ করো/gi,"")
+.replace(/কাজ যোগ/gi,"")
+.trim();
+
+if(task){
+
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
+
+tasks.push({
+text:task,
+done:false
+});
+
+localStorage.setItem(
+"tasks",
+JSON.stringify(tasks)
+);
+
+showTasks();
+
+reply("ঠিক আছে, Task যোগ করেছি।");
+
+return;
+}
+
+}
+
+
+// SHOW NOTES
+
+if(
+command.includes("notes দেখাও") ||
+command.includes("নোট দেখাও")
+){
+
+let notes=
+JSON.parse(
+localStorage.getItem("notes")
+)||[];
+
+reply(
+"আপনার মোট "+notes.length+
+"টি Note আছে।"
+);
+
+return;
+}
+
+
+// SHOW TASK
+
+if(
+command.includes("task দেখাও") ||
+command.includes("কাজ দেখাও")
+){
+
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
+
+reply(
+"আপনার মোট "+tasks.length+
+"টি Task আছে।"
+);
+
+return;
+}
+
+
+// UNKNOWN
+
+reply(
+"দুঃখিত, এই Command এখনো শিখিনি।"
+);
+
+}
+
+
+/* ================= AI REPLY ================= */
+
+function reply(text){
+
+document.getElementById(
+"response"
+).innerText="🤖 "+text;
+
+speak(text);
+
+}
+
+
+/* ================= VOICE REPLY ================= */
+
+function speak(text){
+
+if("speechSynthesis" in window){
+
+let speech=
+new SpeechSynthesisUtterance(text);
+
+speech.lang="bn-BD";
+
+speech.rate=1;
+
+speechSynthesis.speak(speech);
+
+}
 
 }
 
 
 /* ================= NOTES ================= */
 
-function saveNote() {
+function saveNote(){
 
-let input =
+let input=
 document.getElementById("noteInput");
 
-let text =
-input.value.trim();
+let text=input.value.trim();
 
-if (!text) {
+if(!text){
 
-alert("আগে Note লিখুন!");
+alert("Note লিখুন!");
 
 return;
 }
 
-let notes =
-JSON.parse(localStorage.getItem("notes")) || [];
+let notes=
+JSON.parse(
+localStorage.getItem("notes")
+)||[];
 
 notes.push(text);
 
@@ -300,25 +459,29 @@ localStorage.setItem(
 JSON.stringify(notes)
 );
 
-input.value = "";
+input.value="";
 
 showNotes();
+
 }
 
 
-function showNotes() {
+function showNotes(){
 
-let notes =
-JSON.parse(localStorage.getItem("notes")) || [];
+let notes=
+JSON.parse(
+localStorage.getItem("notes")
+)||[];
 
-let list =
+let list=
 document.getElementById("notesList");
 
-list.innerHTML = "";
+list.innerHTML="";
 
-notes.forEach((note,index) => {
+notes.forEach((note,index)=>{
 
-list.innerHTML += `
+list.innerHTML+=`
+
 <div class="item">
 
 ${note}
@@ -332,16 +495,20 @@ onclick="deleteNote(${index})">
 <div style="clear:both"></div>
 
 </div>
+
 `;
 
 });
+
 }
 
 
-function deleteNote(index) {
+function deleteNote(index){
 
-let notes =
-JSON.parse(localStorage.getItem("notes")) || [];
+let notes=
+JSON.parse(
+localStorage.getItem("notes")
+)||[];
 
 notes.splice(index,1);
 
@@ -351,32 +518,34 @@ JSON.stringify(notes)
 );
 
 showNotes();
+
 }
 
 
 /* ================= TASK ================= */
 
-function addTask() {
+function addTask(){
 
-let input =
+let input=
 document.getElementById("taskInput");
 
-let text =
-input.value.trim();
+let text=input.value.trim();
 
-if (!text) {
+if(!text){
 
-alert("কাজ লিখুন!");
+alert("Task লিখুন!");
 
 return;
 }
 
-let tasks =
-JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
 
 tasks.push({
-text: text,
-done: false
+text:text,
+done:false
 });
 
 localStorage.setItem(
@@ -384,33 +553,36 @@ localStorage.setItem(
 JSON.stringify(tasks)
 );
 
-input.value = "";
+input.value="";
 
 showTasks();
+
 }
 
 
-function showTasks() {
+function showTasks(){
 
-let tasks =
-JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
 
-let list =
+let list=
 document.getElementById("taskList");
 
-list.innerHTML = "";
+list.innerHTML="";
 
-tasks.forEach((task,index) => {
+tasks.forEach((task,index)=>{
 
-list.innerHTML += `
+list.innerHTML+=`
 
 <div class="item">
 
 <span
 onclick="completeTask(${index})"
-class="${task.done ? 'completed' : ''}">
+class="${task.done?'completed':''}">
 
-${task.done ? "✅" : "⬜"}
+${task.done?'✅':'⬜'}
 ${task.text}
 
 </span>
@@ -428,15 +600,18 @@ onclick="deleteTask(${index})">
 `;
 
 });
+
 }
 
 
-function completeTask(index) {
+function completeTask(index){
 
-let tasks =
-JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
 
-tasks[index].done =
+tasks[index].done=
 !tasks[index].done;
 
 localStorage.setItem(
@@ -445,13 +620,16 @@ JSON.stringify(tasks)
 );
 
 showTasks();
+
 }
 
 
-function deleteTask(index) {
+function deleteTask(index){
 
-let tasks =
-JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks=
+JSON.parse(
+localStorage.getItem("tasks")
+)||[];
 
 tasks.splice(index,1);
 
@@ -461,96 +639,7 @@ JSON.stringify(tasks)
 );
 
 showTasks();
-}
 
-
-/* ================= REMINDER ================= */
-
-function setReminder() {
-
-let text =
-document.getElementById("reminderText").value;
-
-let time =
-document.getElementById("reminderTime").value;
-
-if (!text || !time) {
-
-alert("Reminder এবং সময় দিন!");
-
-return;
-}
-
-let reminders =
-JSON.parse(localStorage.getItem("reminders")) || [];
-
-reminders.push({
-text: text,
-time: time
-});
-
-localStorage.setItem(
-"reminders",
-JSON.stringify(reminders)
-);
-
-document.getElementById("reminderText").value = "";
-
-showReminders();
-}
-
-
-function showReminders() {
-
-let reminders =
-JSON.parse(localStorage.getItem("reminders")) || [];
-
-let list =
-document.getElementById("reminderList");
-
-list.innerHTML = "";
-
-reminders.forEach((r,index) => {
-
-list.innerHTML += `
-
-<div class="item">
-
-⏰ ${r.text}
-
-<br>
-
-<small>${r.time}</small>
-
-<button
-class="delete"
-onclick="deleteReminder(${index})">
-🗑️
-</button>
-
-<div style="clear:both"></div>
-
-</div>
-
-`;
-
-});
-}
-
-
-function deleteReminder(index) {
-
-let reminders =
-JSON.parse(localStorage.getItem("reminders")) || [];
-
-reminders.splice(index,1);
-
-localStorage.setItem(
-"reminders",
-JSON.stringify(reminders)
-);
-
-showReminders();
 }
 
 
@@ -558,9 +647,8 @@ showReminders();
 
 showNotes();
 showTasks();
-showReminders();
 
 </script>
 
 </body>
-</Smaa
+</html>
