@@ -1,1692 +1,953 @@
 <!DOCTYPE html>
-
 <html lang="bn">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CHAYAN AI</title>
 
-
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
-
 
 body{
-
-min-height:100vh;
-
-color:white;
-
-padding:15px;
-
-background:
-
-radial-gradient(
-circle at top left,
-#1c75bc,
-transparent 40%
-),
-
-radial-gradient(
-circle at bottom right,
-#7c3aed,
-transparent 40%
-),
-
-linear-gradient(
-135deg,
-#06111f,
-#111936,
-#210d35
-);
-
+  min-height:100vh;
+  color:white;
+  padding:15px;
+  background:
+  radial-gradient(circle at top left,#1d4ed8,transparent 40%),
+  radial-gradient(circle at bottom right,#7c3aed,transparent 40%),
+  linear-gradient(135deg,#06111f,#111936,#210d35);
 }
-
 
 .app{
-
-max-width:520px;
-
-margin:auto;
-
+  max-width:520px;
+  margin:auto;
 }
-
-
-/* HEADER */
 
 .header{
-
-text-align:center;
-
-padding:25px 10px;
-
+  text-align:center;
+  padding:25px 10px;
 }
-
 
 .profile-box{
-
-width:130px;
-
-height:130px;
-
-margin:auto;
-
-padding:5px;
-
-border-radius:50%;
-
-background:
-
-linear-gradient(
-135deg,
-#00e5ff,
-#6c63ff,
-#ff4ecd
-);
-
-box-shadow:
-
-0 0 20px #00e5ff,
-0 0 50px rgba(108,99,255,.6);
-
+  width:130px;
+  height:130px;
+  margin:auto;
+  padding:5px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#00e5ff,#6c63ff,#ff4ecd);
+  box-shadow:
+  0 0 20px #00e5ff,
+  0 0 50px rgba(108,99,255,.6);
 }
-
 
 .profile-box img{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-border-radius:50%;
-
-border:4px solid #111827;
-
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid #111827;
 }
-
 
 .title{
-
-margin-top:18px;
-
-font-size:36px;
-
-font-weight:900;
-
-letter-spacing:2px;
-
-background:
-
-linear-gradient(
-90deg,
-#00e5ff,
-white,
-#d946ef
-);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
+  margin-top:18px;
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:2px;
+  background:linear-gradient(90deg,#00e5ff,#ffffff,#d946ef);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
-
 
 .subtitle{
-
-margin-top:8px;
-
-color:#cbd5ff;
-
-font-size:14px;
-
-letter-spacing:1px;
-
+  margin-top:8px;
+  color:#cbd5ff;
+  font-size:14px;
+  letter-spacing:1px;
 }
-
-
-/* CARD */
 
 .card{
-
-margin-bottom:16px;
-
-padding:18px;
-
-border-radius:22px;
-
-background:
-rgba(255,255,255,.08);
-
-border:
-1px solid rgba(255,255,255,.14);
-
-backdrop-filter:blur(15px);
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.25);
-
+  margin-bottom:16px;
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(15px);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
-
 
 .card h2{
-
-margin-bottom:15px;
-
+  margin-bottom:15px;
 }
-
 
 /* VOICE */
 
 .voice-btn{
-
-display:block;
-
-width:110px;
-
-height:110px;
-
-margin:15px auto;
-
-border:none;
-
-border-radius:50%;
-
-font-size:42px;
-
-cursor:pointer;
-
-background:
-
-linear-gradient(
-135deg,
-#00e5ff,
-#6c63ff,
-#ec4899
-);
-
-box-shadow:
-
-0 0 25px #00d9ff,
-0 0 55px rgba(139,92,246,.7);
-
-transition:.3s;
-
+  display:block;
+  width:110px;
+  height:110px;
+  margin:15px auto;
+  border:none;
+  border-radius:50%;
+  font-size:42px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#00e5ff,#6c63ff,#ec4899);
+  box-shadow:
+  0 0 25px #00d9ff,
+  0 0 55px rgba(139,92,246,.7);
 }
-
-
-.voice-btn:active{
-
-transform:scale(.95);
-
-}
-
 
 .voice-btn.active{
-
-animation:pulse 1s infinite;
-
+  animation:pulse 1s infinite;
 }
-
 
 @keyframes pulse{
-
-0%{
-transform:scale(1);
+  0%{transform:scale(1)}
+  50%{
+    transform:scale(1.15);
+    box-shadow:
+    0 0 35px #00e5ff,
+    0 0 70px #ec4899;
+  }
+  100%{transform:scale(1)}
 }
-
-50%{
-
-transform:scale(1.15);
-
-box-shadow:
-
-0 0 35px #00e5ff,
-0 0 70px #ec4899;
-
-}
-
-100%{
-transform:scale(1);
-}
-
-}
-
 
 .voice-text{
-
-text-align:center;
-
-padding:14px;
-
-border-radius:14px;
-
-background:
-rgba(0,0,0,.25);
-
-color:#dbeafe;
-
+  text-align:center;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,0,0,.25);
+  color:#dbeafe;
 }
-
 
 /* CHAT */
 
 .chat-box{
-
-height:300px;
-
-overflow-y:auto;
-
-padding:10px;
-
-border-radius:16px;
-
-background:
-rgba(0,0,0,.25);
-
+  height:300px;
+  overflow-y:auto;
+  padding:10px;
+  border-radius:16px;
+  background:rgba(0,0,0,.25);
 }
-
 
 .message{
-
-max-width:85%;
-
-padding:12px;
-
-margin:10px 0;
-
-border-radius:16px;
-
-line-height:1.5;
-
-word-wrap:break-word;
-
+  max-width:88%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:16px;
+  line-height:1.5;
+  word-wrap:break-word;
 }
-
 
 .ai{
-
-background:
-
-linear-gradient(
-135deg,
-rgba(0,229,255,.20),
-rgba(108,99,255,.30)
-);
-
-border:
-
-1px solid
-rgba(0,229,255,.25);
-
+  background:linear-gradient(
+    135deg,
+    rgba(0,229,255,.20),
+    rgba(108,99,255,.30)
+  );
+  border:1px solid rgba(0,229,255,.25);
 }
-
 
 .user{
-
-margin-left:auto;
-
-background:
-
-linear-gradient(
-135deg,
-#4f46e5,
-#9333ea
-);
-
+  margin-left:auto;
+  background:linear-gradient(135deg,#4f46e5,#9333ea);
 }
-
-
-/* INPUT */
 
 input,
 textarea{
-
-width:100%;
-
-border:none;
-
-outline:none;
-
-padding:14px;
-
-margin-top:12px;
-
-color:white;
-
-font-size:16px;
-
-border-radius:14px;
-
-background:
-
-rgba(255,255,255,.12);
-
-border:
-
-1px solid
-rgba(255,255,255,.14);
-
+  width:100%;
+  border:none;
+  outline:none;
+  padding:14px;
+  margin-top:12px;
+  color:white;
+  font-size:16px;
+  border-radius:14px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.14);
 }
-
 
 input::placeholder,
 textarea::placeholder{
-
-color:#cbd5e1;
-
+  color:#cbd5e1;
 }
-
 
 textarea{
-
-height:90px;
-
-resize:none;
-
+  height:90px;
+  resize:none;
 }
-
-
-/* BUTTON */
 
 .main-btn{
-
-width:100%;
-
-border:none;
-
-margin-top:10px;
-
-padding:14px;
-
-border-radius:14px;
-
-color:white;
-
-font-size:16px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-background:
-
-linear-gradient(
-90deg,
-#00b4db,
-#6366f1,
-#a855f7
-);
-
-box-shadow:
-
-0 8px 25px
-rgba(99,102,241,.35);
-
+  width:100%;
+  border:none;
+  margin-top:10px;
+  padding:14px;
+  border-radius:14px;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(
+    90deg,
+    #00b4db,
+    #6366f1,
+    #a855f7
+  );
 }
-
-
-.main-btn:active{
-
-transform:scale(.98);
-
-}
-
-
-/* ITEMS */
 
 .item{
-
-padding:13px;
-
-margin-top:10px;
-
-border-radius:14px;
-
-background:
-rgba(255,255,255,.08);
-
-border-left:
-3px solid #00e5ff;
-
+  padding:13px;
+  margin-top:10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  border-left:3px solid #00e5ff;
 }
-
 
 .delete{
-
-float:right;
-
-border:none;
-
-background:none;
-
-color:white;
-
-font-size:18px;
-
+  float:right;
+  border:none;
+  background:none;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
 }
-
 
 .done{
-
-text-decoration:line-through;
-
-opacity:.5;
-
+  text-decoration:line-through;
+  opacity:.5;
 }
-
 
 .footer{
-
-text-align:center;
-
-color:#9ca3af;
-
-padding:15px;
-
-font-size:13px;
-
+  text-align:center;
+  color:#9ca3af;
+  padding:15px;
+  font-size:13px;
 }
-
-
-/* STATUS */
-
-.status{
-
-text-align:center;
-
-font-size:13px;
-
-margin-top:8px;
-
-color:#93c5fd;
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="app">
-
-
-<!-- HEADER -->
 
 <div class="header">
 
-<div class="profile-box">
+  <div class="profile-box">
+    <img src="profile.jpg" alt="Chayan">
+  </div>
 
-<img
-src="profile.jpg"
-alt="Chayan">
+  <h1 class="title">CHAYAN AI</h1>
 
-</div>
-
-
-<h1 class="title">
-
-CHAYAN AI
-
-</h1>
-
-
-<p class="subtitle">
-
-YOUR PERSONAL SMART VOICE ASSISTANT
-
-</p>
+  <p class="subtitle">
+    YOUR PERSONAL REAL AI VOICE ASSISTANT
+  </p>
 
 </div>
-
 
 
 <!-- VOICE -->
 
 <div class="card">
 
-<h2>
+  <h2>🎤 Talk With CHAYAN AI</h2>
 
-🎤 Talk With CHAYAN AI
+  <button
+    id="voiceBtn"
+    class="voice-btn"
+    onclick="startVoice()">
+    🎤
+  </button>
 
-</h2>
-
-
-<button
-id="voiceBtn"
-class="voice-btn"
-onclick="startVoice()">
-
-🎤
-
-</button>
-
-
-<div
-id="voiceText"
-class="voice-text">
-
-মাইক্রোফোন চাপুন এবং কথা বলুন...
+  <div
+    id="voiceText"
+    class="voice-text">
+    মাইক্রোফোন চাপুন এবং কথা বলুন...
+  </div>
 
 </div>
-
-
-<div
-id="status"
-class="status">
-
-🟢 AI Ready
-
-</div>
-
-</div>
-
 
 
 <!-- CHAT -->
 
 <div class="card">
 
-<h2>
+  <h2>💬 REAL AI CHAT</h2>
 
-💬 CHAYAN AI CHAT
+  <div id="chatBox" class="chat-box">
 
-</h2>
+    <div class="message ai">
+      🤖 হ্যালো Chayan! আমি CHAYAN AI। তুমি যা জানতে চাও, আমাকে জিজ্ঞাসা করতে পারো।
+    </div>
 
+  </div>
 
-<div
-id="chatBox"
-class="chat-box">
+  <input
+    id="chatInput"
+    placeholder="এখানে প্রশ্ন লিখুন অথবা Voice ব্যবহার করুন...">
 
-
-<div class="message ai">
-
-🤖 হ্যালো Chayan! আমি CHAYAN AI।
-
-তুমি আমার সাথে কথা বলতে পারো।
-
-</div>
-
-
-</div>
-
-
-<input
-
-id="chatInput"
-
-placeholder="এখানে লিখুন অথবা Voice ব্যবহার করুন..."
-
-onkeydown="handleEnter(event)">
-
-
-<button
-
-class="main-btn"
-
-onclick="sendMessage()">
-
-🚀 SEND MESSAGE
-
-</button>
+  <button
+    class="main-btn"
+    onclick="sendMessage()">
+    🚀 ASK CHAYAN AI
+  </button>
 
 </div>
-
 
 
 <!-- NOTES -->
 
 <div class="card">
 
-<h2>
+  <h2>📝 SMART NOTES</h2>
 
-📝 SMART NOTES
+  <textarea
+    id="noteInput"
+    placeholder="গুরুত্বপূর্ণ Note লিখুন..."></textarea>
 
-</h2>
+  <button
+    class="main-btn"
+    onclick="saveNote()">
+    💾 SAVE NOTE
+  </button>
 
-
-<textarea
-
-id="noteInput"
-
-placeholder="গুরুত্বপূর্ণ Note লিখুন...">
-
-</textarea>
-
-
-<button
-
-class="main-btn"
-
-onclick="saveNote()">
-
-💾 SAVE NOTE
-
-</button>
-
-
-<div id="notesList"></div>
+  <div id="notesList"></div>
 
 </div>
-
 
 
 <!-- TASKS -->
 
 <div class="card">
 
-<h2>
+  <h2>📋 DAILY TASKS</h2>
 
-📋 DAILY TASKS
+  <input
+    id="taskInput"
+    placeholder="নতুন Task লিখুন...">
 
-</h2>
+  <button
+    class="main-btn"
+    onclick="addTask()">
+    ➕ ADD TASK
+  </button>
 
-
-<input
-
-id="taskInput"
-
-placeholder="নতুন Task লিখুন..."
-
-onkeydown="taskEnter(event)">
-
-
-<button
-
-class="main-btn"
-
-onclick="addTask()">
-
-➕ ADD TASK
-
-</button>
-
-
-<div id="taskList"></div>
+  <div id="taskList"></div>
 
 </div>
-
 
 
 <div class="footer">
-
-© 2026 CHAYAN AI • Created by Chayan
-
+  © 2026 CHAYAN AI • Created by Chayan
 </div>
 
-
 </div>
-
 
 
 <script>
 
-
 /* =========================
-CLOUDFLARE AI URL
+   REAL AI BRAIN URL
 ========================= */
 
-
-const AI_URL =
-"https://chayan-aibrain.chayangosh98.workers.dev/";
-
+const AI_SERVER =
+"https://chayan-ai.chayangosh98.workers.dev/";
 
 
 /* =========================
-VOICE RECOGNITION
+   VOICE
 ========================= */
-
 
 function startVoice(){
 
+  const SpeechRecognition =
+  window.SpeechRecognition ||
+  window.webkitSpeechRecognition;
 
-const SpeechRecognition =
+  if(!SpeechRecognition){
 
-window.SpeechRecognition ||
+    alert(
+      "Voice Recognition এর জন্য Google Chrome ব্যবহার করুন।"
+    );
 
-window.webkitSpeechRecognition;
+    return;
+  }
 
+  const recognition =
+  new SpeechRecognition();
 
-if(!SpeechRecognition){
+  recognition.lang = "bn-BD";
 
-alert(
-"Voice Recognition-এর জন্য Google Chrome ব্যবহার করুন।"
-);
+  recognition.continuous = false;
 
-return;
+  recognition.interimResults = false;
 
-}
+  const button =
+  document.getElementById("voiceBtn");
 
+  const output =
+  document.getElementById("voiceText");
 
-const recognition =
-new SpeechRecognition();
+  button.classList.add("active");
 
+  output.innerText =
+  "🎧 শুনছি... কথা বলুন";
 
-recognition.lang =
-"bn-BD";
+  try{
 
+    recognition.start();
 
-recognition.continuous =
-false;
+  }catch(error){
 
+    output.innerText =
+    "🎧 Voice ইতিমধ্যে চলছে...";
 
-recognition.interimResults =
-false;
-
-
-const button =
-document.getElementById(
-"voiceBtn"
-);
-
-
-const output =
-document.getElementById(
-"voiceText"
-);
+  }
 
 
-const status =
-document.getElementById(
-"status"
-);
+  recognition.onresult =
+  function(event){
+
+    const text =
+    event.results[0][0].transcript;
+
+    output.innerText =
+    "🗣️ আপনি বলেছেন: " + text;
+
+    document.getElementById(
+      "chatInput"
+    ).value = text;
 
 
-button.classList.add(
-"active"
-);
+    /* AUTOMATICALLY SEND */
+
+    sendMessage();
+
+  };
 
 
-status.innerText =
-"🔴 Listening...";
+  recognition.onerror =
+  function(event){
+
+    let message =
+    "❌ Voice Error: " +
+    event.error;
+
+    if(event.error === "not-allowed"){
+
+      message =
+      "❌ Microphone Permission Allow করুন";
+
+    }
+
+    output.innerText = message;
+
+    button.classList.remove("active");
+
+  };
 
 
-output.innerText =
-"🎧 শুনছি... কথা বলুন";
+  recognition.onend =
+  function(){
 
+    button.classList.remove("active");
 
-try{
-
-recognition.start();
-
-}
-
-catch(error){
-
-console.log(error);
-
-}
-
-
-recognition.onresult =
-function(event){
-
-
-const text =
-event.results[0][0].transcript;
-
-
-output.innerText =
-"🗣️ আপনি বলেছেন: " + text;
-
-
-document.getElementById(
-"chatInput"
-).value = text;
-
-
-sendMessage();
-
-};
-
-
-
-recognition.onerror =
-function(event){
-
-
-button.classList.remove(
-"active"
-);
-
-
-status.innerText =
-"🟢 AI Ready";
-
-
-if(
-event.error === "not-allowed"
-){
-
-output.innerText =
-"❌ Microphone Permission দিন";
+  };
 
 }
-
-else{
-
-output.innerText =
-"❌ Voice Error: "
-+ event.error;
-
-}
-
-};
-
-
-
-recognition.onend =
-function(){
-
-button.classList.remove(
-"active"
-);
-
-status.innerText =
-"🟢 AI Ready";
-
-};
-
-}
-
 
 
 /* =========================
-SEND MESSAGE
+   SEND TO REAL AI
 ========================= */
-
 
 async function sendMessage(){
 
+  const input =
+  document.getElementById("chatInput");
 
-const input =
-document.getElementById(
-"chatInput"
-);
+  const text =
+  input.value.trim();
 
-
-const text =
-input.value.trim();
+  if(!text) return;
 
 
-if(!text){
+  /* USER MESSAGE */
 
-return;
+  addMessage(
+    text,
+    "user"
+  );
 
-}
-
-
-addMessage(
-text,
-"user"
-);
+  input.value = "";
 
 
-input.value = "";
+  /* THINKING */
+
+  const thinking =
+  document.createElement("div");
+
+  thinking.className =
+  "message ai";
+
+  thinking.id =
+  "thinking";
+
+  thinking.innerText =
+  "🤖 CHAYAN AI ভাবছে...";
+
+  const chatBox =
+  document.getElementById("chatBox");
+
+  chatBox.appendChild(thinking);
+
+  chatBox.scrollTop =
+  chatBox.scrollHeight;
 
 
-const thinking =
-document.createElement(
-"div"
-);
+  try{
+
+    const response =
+    await fetch(
+      AI_SERVER,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:JSON.stringify({
+          message:text
+        })
+
+      }
+    );
 
 
-thinking.className =
-"message ai";
+    const data =
+    await response.json();
 
 
-thinking.innerText =
-"🤖 CHAYAN AI ভাবছে...";
+    /* REMOVE THINKING */
+
+    const thinkingBox =
+    document.getElementById("thinking");
+
+    if(thinkingBox){
+
+      thinkingBox.remove();
+
+    }
 
 
-const chatBox =
-document.getElementById(
-"chatBox"
-);
+    const answer =
+    data.reply ||
+    "দুঃখিত, আমি উত্তর দিতে পারিনি।";
 
 
-chatBox.appendChild(
-thinking
-);
+    /* SHOW ANSWER */
+
+    addMessage(
+      answer,
+      "ai"
+    );
 
 
-chatBox.scrollTop =
-chatBox.scrollHeight;
+    /* SPEAK ANSWER */
+
+    speak(answer);
 
 
-try{
+  }
+
+  catch(error){
+
+    const thinkingBox =
+    document.getElementById("thinking");
+
+    if(thinkingBox){
+
+      thinkingBox.remove();
+
+    }
 
 
-const response =
-await fetch(
-
-AI_URL,
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-"application/json"
-
-},
-
-body:JSON.stringify({
-
-message:text
-
-})
-
-}
-
-);
+    const answer =
+    "দুঃখিত Chayan, AI Server-এর সাথে যোগাযোগ করা যাচ্ছে না।";
 
 
-if(!response.ok){
+    addMessage(
+      answer,
+      "ai"
+    );
 
-throw new Error(
-"Server Error "
-+ response.status
-);
+    speak(answer);
 
-}
-
-
-const data =
-await response.json();
-
-
-thinking.remove();
-
-
-if(data.reply){
-
-
-addMessage(
-data.reply,
-"ai"
-);
-
-
-speak(
-data.reply
-);
-
-
-}
-
-else{
-
-
-addMessage(
-
-"❌ AI কোনো উত্তর দিতে পারেনি।",
-
-"ai"
-
-);
+  }
 
 }
-
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-thinking.remove();
-
-
-addMessage(
-
-"❌ AI Server-এর সাথে যোগাযোগ করা যাচ্ছে না। Cloudflare Worker এবং AI Binding check করুন।",
-
-"ai"
-
-);
-
-}
-
-}
-
 
 
 /* =========================
-ADD MESSAGE
+   ADD MESSAGE
 ========================= */
-
 
 function addMessage(
-text,
-type
+  text,
+  type
 ){
 
+  const box =
+  document.getElementById("chatBox");
 
-const box =
-document.getElementById(
-"chatBox"
-);
+  const div =
+  document.createElement("div");
 
+  div.className =
+  "message " + type;
 
-const div =
-document.createElement(
-"div"
-);
+  div.innerText =
+  type === "ai"
+  ? "🤖 " + text
+  : "👤 " + text;
 
+  box.appendChild(div);
 
-div.className =
-"message " + type;
-
-
-if(type === "ai"){
-
-div.innerText =
-"🤖 " + text;
+  box.scrollTop =
+  box.scrollHeight;
 
 }
-
-else{
-
-div.innerText =
-"👤 " + text;
-
-}
-
-
-box.appendChild(
-div
-);
-
-
-box.scrollTop =
-box.scrollHeight;
-
-}
-
 
 
 /* =========================
-VOICE REPLY
+   SPEAK AI ANSWER
 ========================= */
-
 
 function speak(text){
 
+  if(
+    "speechSynthesis" in window
+  ){
 
-if(
-"speechSynthesis"
-in window
-){
+    window.speechSynthesis.cancel();
 
+    const speech =
+    new SpeechSynthesisUtterance(text);
 
-window.speechSynthesis.cancel();
+    speech.lang = "bn-BD";
 
+    speech.rate = 1;
 
-const speech =
-new SpeechSynthesisUtterance(
-text
-);
+    speech.pitch = 1;
 
+    window.speechSynthesis.speak(speech);
 
-speech.lang =
-"bn-BD";
-
-
-speech.rate =
-0.95;
-
-
-speech.pitch =
-1;
-
-
-window.speechSynthesis.speak(
-speech
-);
+  }
 
 }
-
-}
-
 
 
 /* =========================
-ENTER CHAT
+   NOTES
 ========================= */
-
-
-function handleEnter(event){
-
-if(
-event.key === "Enter"
-){
-
-event.preventDefault();
-
-sendMessage();
-
-}
-
-}
-
-
-
-/* =========================
-NOTES
-========================= */
-
 
 function saveNote(){
 
+  const input =
+  document.getElementById("noteInput");
 
-const input =
-document.getElementById(
-"noteInput"
-);
+  const text =
+  input.value.trim();
 
+  if(!text){
 
-const text =
-input.value.trim();
+    alert("আগে একটি Note লিখুন!");
 
+    return;
+  }
 
-if(!text){
+  let notes =
+  JSON.parse(
+    localStorage.getItem("notes")
+  ) || [];
 
-alert(
-"আগে একটি Note লিখুন!"
-);
+  notes.push(text);
 
-return;
+  localStorage.setItem(
+    "notes",
+    JSON.stringify(notes)
+  );
 
-}
+  input.value = "";
 
-
-let notes =
-
-JSON.parse(
-
-localStorage.getItem(
-"notes"
-)
-
-) || [];
-
-
-notes.push(text);
-
-
-localStorage.setItem(
-
-"notes",
-
-JSON.stringify(notes)
-
-);
-
-
-input.value = "";
-
-
-showNotes();
+  showNotes();
 
 }
-
-
-
-/* =========================
-SHOW NOTES
-========================= */
 
 
 function showNotes(){
 
+  const notes =
+  JSON.parse(
+    localStorage.getItem("notes")
+  ) || [];
 
-const notes =
+  const list =
+  document.getElementById("notesList");
 
-JSON.parse(
+  list.innerHTML = "";
 
-localStorage.getItem(
-"notes"
-)
+  notes.forEach(
+    function(note,index){
 
-) || [];
+      const item =
+      document.createElement("div");
 
+      item.className =
+      "item";
 
-const list =
-document.getElementById(
-"notesList"
-);
+      const text =
+      document.createElement("span");
 
+      text.innerText = note;
 
-list.innerHTML = "";
+      const button =
+      document.createElement("button");
 
+      button.className =
+      "delete";
 
-notes.forEach(
+      button.innerText =
+      "🗑️";
 
-function(note,index){
+      button.onclick =
+      function(){
 
+        deleteNote(index);
 
-const item =
-document.createElement(
-"div"
-);
+      };
 
+      item.appendChild(text);
 
-item.className =
-"item";
+      item.appendChild(button);
 
+      list.appendChild(item);
 
-const text =
-document.createElement(
-"span"
-);
-
-
-text.innerText =
-note;
-
-
-const button =
-document.createElement(
-"button"
-);
-
-
-button.className =
-"delete";
-
-
-button.innerText =
-"🗑️";
-
-
-button.onclick =
-function(){
-
-deleteNote(index);
-
-};
-
-
-item.appendChild(
-text
-);
-
-
-item.appendChild(
-button
-);
-
-
-list.appendChild(
-item
-);
+    }
+  );
 
 }
-
-);
-
-}
-
-
-
-/* =========================
-DELETE NOTE
-========================= */
 
 
 function deleteNote(index){
 
+  let notes =
+  JSON.parse(
+    localStorage.getItem("notes")
+  ) || [];
 
-let notes =
+  notes.splice(index,1);
 
-JSON.parse(
+  localStorage.setItem(
+    "notes",
+    JSON.stringify(notes)
+  );
 
-localStorage.getItem(
-"notes"
-)
-
-) || [];
-
-
-notes.splice(
-index,
-1
-);
-
-
-localStorage.setItem(
-
-"notes",
-
-JSON.stringify(notes)
-
-);
-
-
-showNotes();
+  showNotes();
 
 }
 
 
-
 /* =========================
-TASKS
+   TASKS
 ========================= */
-
 
 function addTask(){
 
+  const input =
+  document.getElementById("taskInput");
 
-const input =
-document.getElementById(
-"taskInput"
-);
+  const text =
+  input.value.trim();
 
+  if(!text){
 
-const text =
-input.value.trim();
+    alert("আগে একটি Task লিখুন!");
 
+    return;
+  }
 
-if(!text){
+  let tasks =
+  JSON.parse(
+    localStorage.getItem("tasks")
+  ) || [];
 
-alert(
-"আগে একটি Task লিখুন!"
-);
+  tasks.push({
+    text:text,
+    done:false
+  });
 
-return;
+  localStorage.setItem(
+    "tasks",
+    JSON.stringify(tasks)
+  );
 
-}
+  input.value = "";
 
-
-let tasks =
-
-JSON.parse(
-
-localStorage.getItem(
-"tasks"
-)
-
-) || [];
-
-
-tasks.push({
-
-text:text,
-
-done:false
-
-});
-
-
-localStorage.setItem(
-
-"tasks",
-
-JSON.stringify(tasks)
-
-);
-
-
-input.value = "";
-
-
-showTasks();
+  showTasks();
 
 }
-
-
-
-/* =========================
-TASK ENTER
-========================= */
-
-
-function taskEnter(event){
-
-if(
-event.key === "Enter"
-){
-
-event.preventDefault();
-
-addTask();
-
-}
-
-}
-
-
-
-/* =========================
-SHOW TASKS
-========================= */
 
 
 function showTasks(){
 
+  const tasks =
+  JSON.parse(
+    localStorage.getItem("tasks")
+  ) || [];
 
-const tasks =
+  const list =
+  document.getElementById("taskList");
 
-JSON.parse(
+  list.innerHTML = "";
 
-localStorage.getItem(
-"tasks"
-)
+  tasks.forEach(
+    function(task,index){
 
-) || [];
+      const item =
+      document.createElement("div");
 
+      item.className =
+      "item";
 
-const list =
-document.getElementById(
-"taskList"
-);
+      const taskText =
+      document.createElement("span");
 
-
-list.innerHTML = "";
-
-
-tasks.forEach(
-
-function(task,index){
-
-
-const item =
-document.createElement(
-"div"
-);
+      taskText.innerText =
+      (task.done ? "✅ " : "⬜ ")
+      + task.text;
 
 
-item.className =
-"item";
+      if(task.done){
+
+        taskText.classList.add(
+          "done"
+        );
+
+      }
 
 
-const taskText =
-document.createElement(
-"span"
-);
+      taskText.onclick =
+      function(){
+
+        completeTask(index);
+
+      };
 
 
-taskText.innerText =
+      const button =
+      document.createElement("button");
 
-(task.done
-? "✅ "
-: "⬜ ")
-+
-task.text;
+      button.className =
+      "delete";
 
+      button.innerText =
+      "🗑️";
 
-if(task.done){
+      button.onclick =
+      function(){
 
-taskText.classList.add(
-"done"
-);
+        deleteTask(index);
 
-}
-
-
-taskText.onclick =
-function(){
-
-completeTask(index);
-
-};
+      };
 
 
-const button =
-document.createElement(
-"button"
-);
+      item.appendChild(taskText);
 
+      item.appendChild(button);
 
-button.className =
-"delete";
+      list.appendChild(item);
 
-
-button.innerText =
-"🗑️";
-
-
-button.onclick =
-function(){
-
-deleteTask(index);
-
-};
-
-
-item.appendChild(
-taskText
-);
-
-
-item.appendChild(
-button
-);
-
-
-list.appendChild(
-item
-);
+    }
+  );
 
 }
-
-);
-
-}
-
-
-
-/* =========================
-COMPLETE TASK
-========================= */
 
 
 function completeTask(index){
 
+  let tasks =
+  JSON.parse(
+    localStorage.getItem("tasks")
+  ) || [];
 
-let tasks =
+  tasks[index].done =
+  !tasks[index].done;
 
-JSON.parse(
+  localStorage.setItem(
+    "tasks",
+    JSON.stringify(tasks)
+  );
 
-localStorage.getItem(
-"tasks"
-)
-
-) || [];
-
-
-tasks[index].done =
-!tasks[index].done;
-
-
-localStorage.setItem(
-
-"tasks",
-
-JSON.stringify(tasks)
-
-);
-
-
-showTasks();
+  showTasks();
 
 }
-
-
-
-/* =========================
-DELETE TASK
-========================= */
 
 
 function deleteTask(index){
 
+  let tasks =
+  JSON.parse(
+    localStorage.getItem("tasks")
+  ) || [];
 
-let tasks =
+  tasks.splice(index,1);
 
-JSON.parse(
+  localStorage.setItem(
+    "tasks",
+    JSON.stringify(tasks)
+  );
 
-localStorage.getItem(
-"tasks"
-)
-
-) || [];
-
-
-tasks.splice(
-index,
-1
-);
-
-
-localStorage.setItem(
-
-"tasks",
-
-JSON.stringify(tasks)
-
-);
-
-
-showTasks();
+  showTasks();
 
 }
 
 
-
 /* =========================
-START
+   ENTER KEY
 ========================= */
 
+document
+.getElementById("chatInput")
+.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      sendMessage();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
 
 showNotes();
 
 showTasks();
 
-
 </script>
 
-
 </body>
-
 </html>
