@@ -3,149 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CHAYAN AI</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
 body{
-    margin:0;
-    background:#f1f3f6;
-    padding:15px;
+  margin:0;
+  background:#eef1f5;
+  padding:15px;
 }
 
 .app{
-    max-width:520px;
-    margin:auto;
+  max-width:520px;
+  margin:auto;
 }
 
 .header{
-    text-align:center;
-    padding:20px 10px;
+  text-align:center;
+  padding:20px 10px;
 }
 
 .header h1{
-    margin:0;
-    font-size:32px;
-}
-
-.header p{
-    color:#666;
+  margin:0;
+  font-size:32px;
 }
 
 .card{
-    background:white;
-    padding:18px;
-    margin-bottom:15px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-
-h2{
-    margin-top:0;
+  background:white;
+  padding:18px;
+  margin-bottom:15px;
+  border-radius:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 input,textarea{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-    margin-bottom:10px;
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  margin-bottom:10px;
 }
 
 textarea{
-    height:90px;
-    resize:none;
+  height:80px;
 }
 
 button{
-    border:0;
-    border-radius:10px;
-    padding:12px 16px;
-    cursor:pointer;
+  border:0;
+  border-radius:10px;
+  padding:12px 16px;
 }
 
-.main-btn{
-    width:100%;
-    background:#222;
-    color:white;
-    font-size:16px;
+.main{
+  width:100%;
+  background:#222;
+  color:white;
 }
 
-.voice-btn{
-    display:block;
-    width:90px;
-    height:90px;
-    margin:20px auto;
-    border-radius:50%;
-    background:#222;
-    color:white;
-    font-size:35px;
+.voice{
+  display:block;
+  width:90px;
+  height:90px;
+  margin:20px auto;
+  border-radius:50%;
+  background:#222;
+  color:white;
+  font-size:34px;
 }
 
-.voice-btn.listening{
-    transform:scale(1.1);
+.voice.active{
+  transform:scale(1.08);
 }
 
-.voice-text{
-    background:#f5f5f5;
-    padding:13px;
-    border-radius:10px;
-    text-align:center;
-    min-height:45px;
+.voiceText{
+  background:#f5f5f5;
+  padding:13px;
+  border-radius:10px;
+  text-align:center;
+  min-height:45px;
 }
 
-.status{
-    text-align:center;
-    margin-top:10px;
-    font-weight:bold;
+.chat{
+  height:250px;
+  overflow-y:auto;
+  background:#f5f5f5;
+  padding:10px;
+  border-radius:12px;
 }
 
-.chat-box{
-    height:250px;
-    overflow-y:auto;
-    background:#f5f5f5;
-    padding:10px;
-    border-radius:12px;
-    margin-bottom:10px;
-}
-
-.msg{
-    padding:10px;
-    margin:7px 0;
-    border-radius:10px;
+.message{
+  padding:10px;
+  margin:7px 0;
+  border-radius:10px;
 }
 
 .user{
-    background:#ddd;
-    text-align:right;
+  background:#ddd;
+  text-align:right;
 }
 
 .ai{
-    background:#e9e9e9;
+  background:#e9e9e9;
 }
 
 .item{
-    background:#f6f6f6;
-    padding:12px;
-    margin-top:8px;
-    border-radius:10px;
+  background:#f6f6f6;
+  padding:12px;
+  margin-top:8px;
+  border-radius:10px;
 }
 
 .delete{
-    float:right;
-    background:none;
-    padding:3px;
+  float:right;
+  background:none;
+  padding:3px;
 }
 
-.completed{
-    text-decoration:line-through;
-    opacity:.5;
+.done{
+  text-decoration:line-through;
+  opacity:.5;
 }
 </style>
 </head>
@@ -154,16 +135,9 @@ button{
 
 <div class="app">
 
-<!-- HEADER -->
-
 <div class="header">
-
 <h1>🤖 CHAYAN AI</h1>
-
-<p>
-Bangla Smart Voice Assistant
-</p>
-
+<p>Bangla Smart Voice Assistant</p>
 </div>
 
 
@@ -173,30 +147,17 @@ Bangla Smart Voice Assistant
 
 <h2>🎤 Voice Assistant</h2>
 
-<p style="text-align:center;">
-বাংলায় কথা বলুন
-</p>
-
 <button
 id="voiceBtn"
-class="voice-btn"
+class="voice"
 onclick="startVoice()">
-
 🎤
-
 </button>
 
 <div
 id="voiceText"
-class="voice-text">
-
-মাইক্রোফোন চাপুন এবং কথা বলুন...
-
-</div>
-
-<div
-id="status"
-class="status">
+class="voiceText">
+মাইক্রোফোন চাপুন...
 </div>
 
 </div>
@@ -210,27 +171,24 @@ class="status">
 
 <div
 id="chatBox"
-class="chat-box">
+class="chat">
 
-<div class="msg ai">
-
-🤖 আমি CHAYAN AI।  
-আপনি আমাকে প্রশ্ন করতে পারেন।
-
+<div class="message ai">
+🤖 হ্যালো! আমি CHAYAN AI। আমাকে কিছু বলুন।
 </div>
 
 </div>
+
+<br>
 
 <input
 id="chatInput"
-placeholder="আপনার প্রশ্ন লিখুন...">
+placeholder="এখানে লিখুন...">
 
 <button
-class="main-btn"
-onclick="sendChat()">
-
+class="main"
+onclick="sendMessage()">
 🚀 Send
-
 </button>
 
 </div>
@@ -244,14 +202,12 @@ onclick="sendChat()">
 
 <textarea
 id="noteInput"
-placeholder="আপনার Note লিখুন..."></textarea>
+placeholder="Note লিখুন..."></textarea>
 
 <button
-class="main-btn"
+class="main"
 onclick="saveNote()">
-
 💾 Save Note
-
 </button>
 
 <div id="notesList"></div>
@@ -267,14 +223,12 @@ onclick="saveNote()">
 
 <input
 id="taskInput"
-placeholder="আপনার Task লিখুন...">
+placeholder="Task লিখুন...">
 
 <button
-class="main-btn"
+class="main"
 onclick="addTask()">
-
 ➕ Add Task
-
 </button>
 
 <div id="taskList"></div>
@@ -286,9 +240,9 @@ onclick="addTask()">
 
 <script>
 
-/* =================================
-VOICE RECOGNITION
-================================= */
+/* ===============================
+VOICE
+================================ */
 
 function startVoice(){
 
@@ -299,7 +253,7 @@ window.webkitSpeechRecognition;
 if(!SpeechRecognition){
 
 alert(
-"আপনার browser Voice Recognition support করছে না। Chrome ব্যবহার করুন।"
+"Chrome browser ব্যবহার করুন।"
 );
 
 return;
@@ -308,103 +262,83 @@ return;
 const recognition =
 new SpeechRecognition();
 
-recognition.lang = "bn-BD";
+recognition.lang="bn-BD";
 
-recognition.continuous = false;
+recognition.continuous=false;
 
-recognition.interimResults = false;
+recognition.interimResults=false;
 
-
-const button =
+const btn=
 document.getElementById("voiceBtn");
 
-const output =
+const output=
 document.getElementById("voiceText");
 
-const status =
-document.getElementById("status");
+btn.classList.add("active");
 
-
-button.classList.add("listening");
-
-output.innerText =
+output.innerText=
 "🎧 শুনছি...";
-
-status.innerText =
-"কথা বলুন...";
-
 
 try{
 
 recognition.start();
 
-}catch(error){
+}catch(e){
 
-status.innerText =
+output.innerText=
 "Voice already running...";
 
 }
 
 
-recognition.onresult =
-function(event){
+recognition.onresult=function(event){
 
-const text =
+const text=
 event.results[0][0].transcript;
 
-output.innerText =
-"🗣️ " + text;
-
-status.innerText =
-"✅ বুঝেছি";
+output.innerText=
+"🗣️ "+text;
 
 document.getElementById(
 "chatInput"
-).value = text;
+).value=text;
 
-sendChat();
-
-};
-
-
-recognition.onerror =
-function(event){
-
-button.classList.remove(
-"listening"
-);
-
-status.innerText =
-"❌ Voice Error: " +
-event.error;
+sendMessage();
 
 };
 
 
-recognition.onend =
-function(){
+recognition.onerror=function(event){
 
-button.classList.remove(
-"listening"
-);
+output.innerText=
+"❌ Voice: "+event.error;
+
+btn.classList.remove("active");
+
+};
+
+
+recognition.onend=function(){
+
+btn.classList.remove("active");
 
 };
 
 }
 
 
-/* =================================
+/* ===============================
 CHAT
-================================= */
+================================ */
 
-function sendChat(){
+function sendMessage(){
 
-const input =
+const input=
 document.getElementById(
 "chatInput"
 );
 
-const text =
+const text=
 input.value.trim();
 
 if(!text){
@@ -417,12 +351,11 @@ text,
 "user"
 );
 
-input.value = "";
+input.value="";
 
 
-const answer =
-smartBrain(text);
-
+const answer=
+smartAI(text);
 
 setTimeout(function(){
 
@@ -438,65 +371,53 @@ speak(answer);
 }
 
 
-/* =================================
-ADD CHAT MESSAGE
-================================= */
+/* ===============================
+MESSAGE
+================================ */
 
 function addMessage(
 text,
 type
 ){
 
-const box =
+const box=
 document.getElementById(
 "chatBox"
 );
 
-const div =
+const div=
 document.createElement(
 "div"
 );
 
-div.className =
-"msg " + type;
+div.className=
+"message "+type;
 
-if(type === "ai"){
-
-div.innerText =
-"🤖 " + text;
-
-}else{
-
-div.innerText =
-"👤 " + text;
-
-}
+div.innerText=
+(type==="ai"?"🤖 ":"👤 ")+text;
 
 box.appendChild(div);
 
-box.scrollTop =
+box.scrollTop=
 box.scrollHeight;
 
 }
 
 
-/* =================================
-SMART BRAIN
-================================= */
+/* ===============================
+SMART AI
+================================ */
 
-function smartBrain(text){
+function smartAI(text){
 
-const q =
-text
-.toLowerCase()
-.trim();
+const q=
+text.toLowerCase().trim();
 
 
-/* IDENTITY */
+/* পরিচয় */
 
 if(
 q.includes("তুমি কে") ||
-q.includes("তুমি কি") ||
 q.includes("তোমার নাম") ||
 q.includes("who are you") ||
 q.includes("tumi ke")
@@ -507,7 +428,7 @@ return "আমি CHAYAN AI। আমি আপনার বাংলা Smart V
 }
 
 
-/* HELLO */
+/* হ্যালো */
 
 if(
 q.includes("হ্যালো") ||
@@ -521,7 +442,7 @@ return "হ্যালো! 😊 আমি CHAYAN AI। কীভাবে স�
 }
 
 
-/* PYTHON */
+/* Python */
 
 if(
 q.includes("python") ||
@@ -533,7 +454,7 @@ return "Python একটি জনপ্রিয় programming language। এট
 }
 
 
-/* COMPUTER SCIENCE */
+/* Computer Science */
 
 if(
 q.includes("computer science") ||
@@ -541,25 +462,12 @@ q.includes("কম্পিউটার সায়েন্স") ||
 q.includes("কম্পিউটার সাইন্স")
 ){
 
-return "Computer Science হলো computing, programming, software, algorithms, database, AI এবং computer technology নিয়ে পড়াশোনার একটি বড় ক্ষেত্র।";
+return "Computer Science-এর মধ্যে Programming, Algorithm, Database, Software, AI, Networking এবং অনেক computer technology শেখানো হয়।";
 
 }
 
 
-/* THANK YOU */
-
-if(
-q.includes("ধন্যবাদ") ||
-q.includes("thanks") ||
-q.includes("thank you")
-){
-
-return "আপনাকেও ধন্যবাদ! 😊";
-
-}
-
-
-/* SHOW NOTES */
+/* Note দেখাও */
 
 if(
 q.includes("নোট দেখাও") ||
@@ -567,58 +475,69 @@ q.includes("notes দেখাও") ||
 q.includes("note দেখাও")
 ){
 
-const notes =
+const notes=
 JSON.parse(
 localStorage.getItem("notes")
-) || [];
+)||[];
 
-return "আপনার মোট " +
-notes.length +
+if(notes.length===0){
+
+return "আপনার কোনো Note নেই।";
+
+}
+
+return "আপনার "+notes.length+
 "টি Note আছে।";
 
 }
 
 
-/* SHOW TASK */
+/* Task দেখাও */
 
 if(
-q.includes("কাজ দেখাও") ||
 q.includes("task দেখাও") ||
-q.includes("টাস্ক দেখাও")
+q.includes("টাস্ক দেখাও") ||
+q.includes("কাজ দেখাও")
 ){
 
-const tasks =
+const tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
-return "আপনার মোট " +
-tasks.length +
+if(tasks.length===0){
+
+return "আপনার কোনো Task নেই।";
+
+}
+
+return "আপনার "+tasks.length+
 "টি Task আছে।";
 
 }
 
 
-/* NOTE COMMAND */
+/* Note command */
 
 if(
 q.includes("note") ||
-q.includes("নোট")
+q.includes("নোট") ||
+q.includes("মনে রাখ")
 ){
 
-let note =
-text
+let note=text
 .replace(/note/gi,"")
 .replace(/নোট/g,"")
 .replace(/করো/g,"")
+.replace(/মনে রাখ/g,"")
 .trim();
 
 if(note){
 
-let notes =
+let notes=
 JSON.parse(
 localStorage.getItem("notes")
-) || [];
+)||[];
 
 notes.push(note);
 
@@ -636,7 +555,7 @@ return "ঠিক আছে। আমি Note save করেছি।";
 }
 
 
-/* TASK COMMAND */
+/* Task command */
 
 if(
 q.includes("task") ||
@@ -644,20 +563,20 @@ q.includes("টাস্ক") ||
 q.includes("কাজ যোগ")
 ){
 
-let task =
-text
+let task=text
 .replace(/task/gi,"")
 .replace(/টাস্ক/g,"")
+.replace(/কাজ যোগ/g,"")
 .replace(/কাজ/g,"")
-.replace(/যোগ করো/g,"")
+.replace(/করো/g,"")
 .trim();
 
 if(task){
 
-let tasks =
+let tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
 tasks.push({
 
@@ -681,74 +600,88 @@ return "ঠিক আছে। আমি Task যোগ করেছি।";
 }
 
 
-/* UNKNOWN */
+/* সাহায্য */
 
-return "দুঃখিত। এই প্রশ্নের উত্তর এখনো আমার Demo Brain-এ নেই। আমাকে আরও Smart করা যাবে।";
+if(
+q.includes("কি করতে পারো") ||
+q.includes("কী করতে পারো") ||
+q.includes("help") ||
+q.includes("সাহায্য")
+){
+
+return "আমি Voice command নিতে পারি, Note save করতে পারি, Task তৈরি করতে পারি এবং কিছু সাধারণ প্রশ্নের উত্তর দিতে পারি।";
 
 }
 
 
-/* =================================
-TEXT TO SPEECH
-================================= */
+/* ধন্যবাদ */
+
+if(
+q.includes("ধন্যবাদ") ||
+q.includes("thanks")
+){
+
+return "আপনাকেও ধন্যবাদ। 😊";
+
+}
+
+
+/* default */
+
+return "আমি কথাটি বুঝেছি, কিন্তু এই command এখনো আমার মধ্যে যোগ করা হয়নি।";
+
+}
+
+
+/* ===============================
+VOICE REPLY
+================================ */
 
 function speak(text){
 
-if(
-"speechSynthesis"
-in window
-){
+if("speechSynthesis" in window){
 
-window.speechSynthesis.cancel();
+speechSynthesis.cancel();
 
-const speech =
-new SpeechSynthesisUtterance(
-text
-);
+const voice=
+new SpeechSynthesisUtterance(text);
 
-speech.lang =
-"bn-BD";
+voice.lang="bn-BD";
 
-speech.rate =
-1;
+voice.rate=1;
 
-speech.pitch =
-1;
-
-window.speechSynthesis.speak(
-speech
-);
+speechSynthesis.speak(voice);
 
 }
 
 }
 
 
-/* =================================
+/* ===============================
 NOTES
-================================= */
+================================ */
 
 function saveNote(){
 
-const input =
+const input=
 document.getElementById(
 "noteInput"
 );
 
-const text =
+const text=
 input.value.trim();
 
 if(!text){
 
-alert("আগে Note লিখুন!");
+alert("Note লিখুন!");
 
 return;
 }
 
-let notes =
+let notes=
 JSON.parse(
 localStorage.getItem("notes")
-) || [];
+)||[];
 
 notes.push(text);
 
@@ -757,7 +690,7 @@ localStorage.setItem(
 JSON.stringify(notes)
 );
 
-input.value = "";
+input.value="";
 
 showNotes();
 
@@ -766,22 +699,22 @@ showNotes();
 
 function showNotes(){
 
-let notes =
+const notes=
 JSON.parse(
 localStorage.getItem("notes")
-) || [];
+)||[];
 
-const list =
+const list=
 document.getElementById(
 "notesList"
 );
 
-list.innerHTML = "";
+list.innerHTML="";
 
 notes.forEach(
 function(note,index){
 
-list.innerHTML += `
+list.innerHTML+=`
 
 <div class="item">
 
@@ -790,9 +723,7 @@ ${escapeHTML(note)}
 <button
 class="delete"
 onclick="deleteNote(${index})">
-
 🗑️
-
 </button>
 
 <div style="clear:both"></div>
@@ -808,10 +739,10 @@ onclick="deleteNote(${index})">
 
 function deleteNote(index){
 
-let notes =
+let notes=
 JSON.parse(
 localStorage.getItem("notes")
-) || [];
+)||[];
 
 notes.splice(index,1);
 
@@ -825,31 +756,31 @@ showNotes();
 }
 
 
-/* =================================
+/* ===============================
 TASKS
-================================= */
+================================ */
 
 function addTask(){
 
-const input =
+const input=
 document.getElementById(
 "taskInput"
 );
 
-const text =
+const text=
 input.value.trim();
 
 if(!text){
 
-alert("আগে Task লিখুন!");
+alert("Task লিখুন!");
 
 return;
 }
 
-let tasks =
+let tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
 tasks.push({
 
@@ -864,7 +795,7 @@ localStorage.setItem(
 JSON.stringify(tasks)
 );
 
-input.value = "";
+input.value="";
 
 showTasks();
 
@@ -873,43 +804,30 @@ showTasks();
 
 function showTasks(){
 
-let tasks =
+const tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
-const list =
+const list=
 document.getElementById(
 "taskList"
 );
 
-list.innerHTML = "";
+list.innerHTML="";
 
 tasks.forEach(
 function(task,index){
 
-list.innerHTML += `
+list.innerHTML+=`
 
 <div class="item">
 
 <span
 onclick="completeTask(${index})"
-class="${
-task.done
-?
-"completed"
-:
-""
-}">
+class="${task.done?"done":""}">
 
-${
-task.done
-?
-"✅"
-:
-"⬜"
-}
-
+${task.done?"✅":"⬜"}
 ${escapeHTML(task.text)}
 
 </span>
@@ -917,9 +835,7 @@ ${escapeHTML(task.text)}
 <button
 class="delete"
 onclick="deleteTask(${index})">
-
 🗑️
-
 </button>
 
 <div style="clear:both"></div>
@@ -935,12 +851,12 @@ onclick="deleteTask(${index})">
 
 function completeTask(index){
 
-let tasks =
+let tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
-tasks[index].done =
+tasks[index].done=
 !tasks[index].done;
 
 localStorage.setItem(
@@ -955,10 +871,10 @@ showTasks();
 
 function deleteTask(index){
 
-let tasks =
+let tasks=
 JSON.parse(
 localStorage.getItem("tasks")
-) || [];
+)||[];
 
 tasks.splice(index,1);
 
@@ -972,31 +888,27 @@ showTasks();
 }
 
 
-/* =================================
+/* ===============================
 SECURITY
-================================= */
+================================ */
 
 function escapeHTML(text){
 
-const div =
-document.createElement(
-"div"
-);
+const div=
+document.createElement("div");
 
-div.textContent =
-text;
+div.textContent=text;
 
 return div.innerHTML;
 
 }
 
 
-/* =================================
+/* ===============================
 START
-================================= */
+================================ */
 
 showNotes();
-
 showTasks();
 
 </script>
